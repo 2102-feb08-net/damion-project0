@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace damion_project0
+namespace ProjectUI
 {
     class Program
     {
