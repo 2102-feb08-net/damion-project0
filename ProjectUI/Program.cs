@@ -6,7 +6,7 @@ namespace ProjectUI
     {
         static void Main(string[] args)
         {
-            UserInterface run = new UserInterface(new MemberRepository(),new StoreRepository());
+            UserInterface run = new UserInterface(new MemberRepository(),new StoreRepository(),new ProductRepository(), new OrderRepository());
             run.Run();
 
         }

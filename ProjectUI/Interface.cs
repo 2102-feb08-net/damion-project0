@@ -12,14 +12,22 @@ namespace ProjectUI
 
         IMemberRepository newusercreation;
         IStoreRepository newstorecreation;
+        IProductRepository newproductcreation;
+        IOrderRepository newordercreation;
 
 
 
 
-        public UserInterface(IMemberRepository repo, IStoreRepository newstore) 
+
+
+        public UserInterface(IMemberRepository repo, IStoreRepository newstore, IProductRepository newproduct, IOrderRepository neworder) 
         {
             newusercreation = repo;
             newstorecreation = newstore;
+            newproductcreation = newproduct;
+            newordercreation = neworder;
+
+            
             
         }
 
@@ -265,7 +273,7 @@ namespace ProjectUI
                                 Console.WriteLine("1: Add Store");
                                 Console.WriteLine("2: Add Product");
                                 Console.WriteLine("3: Search an member by email");
-                                Console.WriteLine("4: View store order history");
+                               
 
                                 string response = Console.ReadLine();
 
@@ -290,7 +298,9 @@ namespace ProjectUI
                 {
                    
 
-                   // addProduct();
+                              Addproduct();
+
+
 
 
 
@@ -298,24 +308,15 @@ namespace ProjectUI
 
                 else if (int.Parse(response) == 3)
                 {
-                    //searchOrder();
+                    searchMember();
 
 
                 }
-
-                 else if (int.Parse(response) == 4)
-                {
-                   // viewStorehistory();
-
-
-
-                }
-
             }
 
             catch (Exception e)
             {
-                Console.WriteLine("You did not enter a proper value. Please try again.");
+                Console.WriteLine("You did not enter a proper value. Your session is up!");
                 Console.WriteLine();
                 WelcomeOptions();
             }
@@ -329,6 +330,46 @@ namespace ProjectUI
                                 Console.WriteLine("");
                                 Console.WriteLine("1: View Previous Orders");
                                 Console.WriteLine("2: Place an order");
+                                                                string response = Console.ReadLine();
+
+
+
+
+                                            try
+            {
+
+                if (int.Parse(response) == 1)
+                {
+                  //  addStore();
+                    
+
+
+
+
+
+                }
+
+                else if (int.Parse(response) == 2)
+                {
+                   
+
+                             AddOrder();
+
+
+
+
+
+                }
+
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine("You did not enter a proper value. Your session is up!");
+                Console.WriteLine();
+                WelcomeOptions();
+            }
+                                
                                 
 
 
@@ -404,10 +445,110 @@ namespace ProjectUI
 
 
         
-          public void Addstore(Products product){
+          public void Addproduct(){
+              Products prod = new Products();
+              Console.WriteLine("What is the name of your product? ");
+              prod.ProductName = Console.ReadLine();
+              Console.WriteLine("What is the price of your product? ");
+              prod.ProductPrice = Convert.ToDecimal(Console.ReadLine());
+              Console.WriteLine("What is a description of your product? ");
+              prod.ProductDescription = Console.ReadLine();
+              newproductcreation.addProduct(prod);
 
+
+
+                
 
                  
+             }
+
+
+
+
+             public void searchMember(){
+
+                 Console.WriteLine("Please provide the email of the member you will like to search");
+
+                string memberEmail = Console.ReadLine();
+
+               if(newusercreation.SearchUserByEmail(memberEmail) == null){
+                   Console.WriteLine("This user do not exist.");
+               }
+               else{
+                   User m = newusercreation.SearchUserByEmail(memberEmail);
+                   Console.WriteLine($"You have searched for the user {m.FirstName} {m.LastName}. ");
+               }
+
+             }
+
+
+             public void AddOrder(){
+
+                 Console.WriteLine("To find a store, please enter the phone number its associated with.");
+                 string zipcode = Console.ReadLine();
+
+                 if(newstorecreation.Findstore(zipcode) == null){
+
+                     Console.WriteLine("No store with that number, sorry.");
+
+                 }
+                 else{
+
+                     Stores newstore = newstorecreation.Findstore(zipcode);
+                     Console.WriteLine("We have found a store with that phone number!");
+                       //Products lineItem = new Products();
+                       //List<Products> orderList = new List<Products>();
+
+
+                     Console.WriteLine("What items will you like to purchase? ");
+                         string productID = Console.ReadLine();              
+
+                         Console.WriteLine("Please add your quantity:");
+                            string quantity = Console.ReadLine();
+                            
+                             
+                             Console.WriteLine("Would you like to add anything else to your order? Y/N");
+                                if (Console.ReadLine().Equals("N")){
+
+                                    Console.WriteLine($"Your order has been placed. You have purchased {quantity}, {productID} ");
+
+                                }
+                                else{
+                                    Console.WriteLine("What other items would you like?");
+                                    string otheritem = Console.ReadLine();
+                                    Console.WriteLine("Please add your quantity...");
+
+                                    string otheritemquantity = Console.ReadLine();
+                                    Console.WriteLine($"You have added the item {otheritem} to your order! You ordered {otheritemquantity} amount." );
+                                    Console.WriteLine("Would you like to add anything else to your order? Y/N");
+                                    if (Console.ReadLine().Equals("N")){
+
+                                    Console.WriteLine($"Your order has been placed. You have purchased {quantity} {productID} and {otheritemquantity} {otheritem}");
+
+                                }
+
+                                    else{
+
+                                        Console.WriteLine($"You have reached the limit of number of items in your cart at once. You have purchased {quantity} {productID} and {otheritemquantity} {otheritem}. For additional services, contact the store at {newstore.StorePhoneNumber}. You will now be logged out. ");
+
+                                    }
+                                }
+                                    
+                             
+
+                
+
+                //newordercreation.placeorder(_order);
+
+
+
+
+                 }
+
+
+
+
+
              }
 
 
