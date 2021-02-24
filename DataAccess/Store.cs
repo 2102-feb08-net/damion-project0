@@ -18,6 +18,7 @@ namespace DataAccess
         public string StoreLocationAddress { get; set; }
         public string StoreLocationCity { get; set; }
         public string StoreLocationState { get; set; }
+        public string StoreLocationCountry { get; set; }
         public string StoreLocationZip { get; set; }
         public string StorePhoneNumber { get; set; }
 

@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using ModelsLibrary;
+namespace ModelsLibrary
+{ 
+
+    public class Products{
+
+        private string _ProductName; 
+        private decimal _ProductPrice;
+        private string _ProductDescription;
+
+
+
+        public string ProductName{
+            get{return _ProductName;}
+
+            set{
+                if(value.Length > 0 ){
+                    _ProductName = value;
+                }
+                else{
+                    throw new Exception("Please enter a product name.");
+                }
+
+            }
+        }
+
+
+        public decimal ProductPrice{
+            get{return _ProductPrice;}
+
+            set{
+                if(value > 0 ){
+                    _ProductPrice = value;
+                }
+                else{
+                    throw new Exception("Please enter a product price.");
+                }
+
+            }
+        }
+
+
+          public string ProductDescription{
+            get{return _ProductDescription;}
+
+            set{
+                if(value.Length > 10 ){
+                    _ProductDescription = value;
+                }
+                else{
+                    throw new Exception("Please enter a descriptive product description.");
+                }
+
+            }
+        }
+
+
+         public Products(){}
+
+
+        
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+}

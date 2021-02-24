@@ -1,12 +1,14 @@
 ﻿using System;
-
+using DataAccess;
 namespace ProjectUI
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            UserInterface run = new UserInterface(new MemberRepository(),new StoreRepository());
+            run.Run();
+
         }
     }
 }
