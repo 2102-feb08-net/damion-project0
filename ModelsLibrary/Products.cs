@@ -5,10 +5,13 @@ namespace ModelsLibrary
 { 
 
     public class Products{
+        public int ID { get; set; }
+        public int Quantity { get; set; }
 
         private string _ProductName; 
         private decimal _ProductPrice;
         private string _ProductDescription;
+
 
 
 
@@ -58,6 +61,15 @@ namespace ModelsLibrary
 
 
          public Products(){}
+
+         public Products(string name, decimal price, string descrip,int Quantity){
+
+             this._ProductName = name;
+             this._ProductPrice = price;
+             this._ProductDescription = descrip;
+             this.Quantity = Quantity;
+
+         }
 
 
         

@@ -7,7 +7,7 @@ namespace ModelsLibrary
 
     public class Stores
     { 
-
+        public int ID {get;set;}
         private string _StoreName = "DamionBuy";
         private string _StoreLocationAddress;
         private string _StoreLocationCity;

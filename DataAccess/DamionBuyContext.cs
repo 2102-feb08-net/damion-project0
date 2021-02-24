@@ -17,7 +17,6 @@ namespace DataAccess
         {
         }
 
-        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
@@ -29,23 +28,11 @@ namespace DataAccess
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Customer>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Customers)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Customers__UserI__1FEDB87C");
-            });
-
             modelBuilder.Entity<Member>(entity =>
             {
                 entity.ToTable("Member");
 
-                entity.HasIndex(e => e.Email, "UQ__Member__A9D10534CB621C80")
+                entity.HasIndex(e => e.Email, "UQ__Member__A9D10534244F2C6B")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -105,12 +92,12 @@ namespace DataAccess
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Orders__Customer__22CA2527");
+                    .HasConstraintName("FK__Orders__Customer__34E8D562");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK__Orders__StoreID__23BE4960");
+                    .HasConstraintName("FK__Orders__StoreID__35DCF99B");
             });
 
             modelBuilder.Entity<OrderItem>(entity =>
@@ -126,12 +113,12 @@ namespace DataAccess
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderItems)
                     .HasForeignKey(d => d.Orderid)
-                    .HasConstraintName("FK__OrderItem__ORDER__269AB60B");
+                    .HasConstraintName("FK__OrderItem__ORDER__38B96646");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderItems)
                     .HasForeignKey(d => d.Productid)
-                    .HasConstraintName("FK__OrderItem__PRODU__278EDA44");
+                    .HasConstraintName("FK__OrderItem__PRODU__39AD8A7F");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -195,12 +182,12 @@ namespace DataAccess
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.StoreInventories)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__STORE_INV__Produ__1940BAED");
+                    .HasConstraintName("FK__STORE_INV__Produ__2E3BD7D3");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.StoreInventories)
                     .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK__STORE_INV__Store__1A34DF26");
+                    .HasConstraintName("FK__STORE_INV__Store__2F2FFC0C");
             });
 
             OnModelCreatingPartial(modelBuilder);

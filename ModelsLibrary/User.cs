@@ -14,6 +14,8 @@ namespace ModelsLibrary
 
     public class User
     {
+
+        public int ID{get;set;}
         private string _FirstName;
         private string _LastName; 
         private string _Email; 

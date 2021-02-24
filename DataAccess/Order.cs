@@ -17,7 +17,7 @@ namespace DataAccess
         public DateTime DatePlaced { get; set; }
         public int? StoreId { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public virtual Member Customer { get; set; }
         public virtual Store Store { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }

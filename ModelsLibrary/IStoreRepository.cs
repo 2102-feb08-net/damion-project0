@@ -10,6 +10,9 @@ namespace ModelsLibrary
         
         public void Addstore(Stores store);
 
+        public Stores Findstore(string ZipC);
+
+
 
 
     }

@@ -9,7 +9,7 @@ namespace DataAccess
     {
         public Member()
         {
-            Customers = new HashSet<Customer>();
+            Orders = new HashSet<Order>();
         }
 
         public int Id { get; set; }
@@ -24,6 +24,6 @@ namespace DataAccess
         public string CustomerLocationZip { get; set; }
         public string Password { get; set; }
 
-        public virtual ICollection<Customer> Customers { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
