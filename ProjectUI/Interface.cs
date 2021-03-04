@@ -37,7 +37,7 @@ namespace ProjectUI
         public void Run()
         {
 
-            Console.WriteLine("Welcome to DamionBuy, a new store with all the latest technology!");
+            Console.WriteLine("Welcome to ElectoBuy, a new store with all the latest technology!");
             Console.WriteLine("");
             Console.WriteLine("How may I help you today? Please select from one of the following: ");
             Console.WriteLine("");

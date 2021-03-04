@@ -18,7 +18,6 @@ namespace DataAccess
             .Options;
             using (var context = new DamionBuyContext(options))
             { 
-
                 var newstore = new Store()
                 {
 
@@ -29,9 +28,6 @@ namespace DataAccess
                 StoreLocationCountry = store.StoreLocationCountry,
                 StoreLocationZip = store.StoreLocationZip,
                 StorePhoneNumber = store.StorePhoneNumber,
-
-
-
                 };
                 context.Add(newstore);
                 context.SaveChanges();
