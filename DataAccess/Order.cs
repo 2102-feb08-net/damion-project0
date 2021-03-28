@@ -9,7 +9,7 @@ namespace DataAccess
     {
         public Order()
         {
-            OrderItem = new HashSet<OrderItem>();
+            OrderItems = new HashSet<OrderItem>();
         }
 
         public int Id { get; set; }
